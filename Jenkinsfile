@@ -31,7 +31,7 @@ pipeline {
         }
       }
     }
-
+/*
     stage('BONUS: Shell-Skript mit Parametern') {
       steps {
         writeFile file: 'script.sh', text: '''
@@ -43,5 +43,6 @@ pipeline {
         sh './script.sh $GLOBAL_VAR $LOCAL_VAR'
       }
     }
+*/
   }
 }
