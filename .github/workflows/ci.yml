@@ -1,0 +1,58 @@
+name: CI Workflow
+
+on: [push]
+
+env:
+  ENV: production
+  VERSION: 1.0.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ENV: development
+
+    steps:
+      - name: Echo globale und lokale Variablen
+        run: |
+          echo "ENV: $ENV"
+          echo "VERSION: $VERSION"
+
+      - name: Secret verwenden
+        env:
+          SECRET: ${{ secrets.MY_SECRET }}
+        run: |
+          echo "Secret wurde geladen, aber nicht angezeigt."
+          echo "Länge des Secrets: ${#SECRET}"
+
+      - name: Output erzeugen
+        id: step1
+        run: echo "::set-output name=myOutput::Hallo aus Step 1"
+
+      - name: Output verwenden
+        run: |
+          echo "Output aus vorherigem Step: ${{ steps.step1.outputs.myOutput }}"
+
+  buildmatrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18]
+
+    steps:
+      - name: Node.js Version anzeigen
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: node -v
+
+  github-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository-Name mit GitHub Script ausgeben
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const repo = context.repo.repo;
+            console.log(`Repository-Name: ${repo}`);
