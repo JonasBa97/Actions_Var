@@ -31,18 +31,17 @@ pipeline {
         }
       }
     }
-/*
+
     stage('BONUS: Shell-Skript mit Parametern') {
       steps {
         writeFile file: 'script.sh', text: '''
-        #!/bin/bash
-        echo "Parameter 1: $1"
-        echo "Parameter 2: $2"
+          #!/bin/bash
+          echo "Parameter 1: $1"
+          echo "Parameter 2: $2"
         '''
-        sh 'chmod +x script.sh'
-        sh './script.sh $GLOBAL_VAR $LOCAL_VAR'
+        sh 'hmod +x script.sh'
+        sh "./script.sh $GLOBAL_VAR $LOCAL_VAR"
       }
     }
-*/
   }
 }
