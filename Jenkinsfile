@@ -40,7 +40,7 @@ pipeline {
           echo "Parameter 2: $2"
         '''
         sh 'chmod +x script.sh'
-        sh "./script.sh $GLOBAL_VAR $LOCAL_VAR"
+        sh "./script.sh ${env.GLOBAL_VAR} ${env.LOCAL_VAR}"
       }
     }
   }
