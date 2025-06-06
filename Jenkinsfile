@@ -39,7 +39,7 @@ pipeline {
           echo "Parameter 1: $1"
           echo "Parameter 2: $2"
         '''
-        sh 'hmod +x script.sh'
+        sh 'chmod +x script.sh'
         sh "./script.sh $GLOBAL_VAR $LOCAL_VAR"
       }
     }
