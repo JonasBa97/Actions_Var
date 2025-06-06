@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     GLOBAL_VAR = 'global variable'
-    MY_SECRET_CREDENTIAL = credentials('JonasBa97')
+    MY_SECRET_CREDENTIAL = credentials('secrets.yaml (JB)')
   }
 
   stages {
